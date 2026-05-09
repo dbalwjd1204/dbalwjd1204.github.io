@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수상 경력 | 민화 작가 유미정</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script>
+tailwind.config = {
+    theme: { extend: {
+        colors: { 'hw-red':'#8B1A1A','hw-bg':'#F8F4ED','hw-bg2':'#EFE9DB','hw-text':'#2C2826','hw-muted':'#7A6B5A','hw-border':'#D4C9B5','hw-black':'#1A1714' },
+        fontFamily: { heading:['Nanum Myeongjo','Georgia','serif'], body:['Nanum Gothic','Apple SD Gothic Neo','sans-serif'] }
+    }}
+}
+</script>
+<style>
+:root{--p:#8B1A1A;--bg:#F8F4ED;--bg2:#EFE9DB;--txt:#2C2826;--mut:#7A6B5A;--bdr:#D4C9B5;--shd:0 4px 20px rgba(44,40,38,.08)}
+body{font-family:'Nanum Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--txt)}
+h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
+.nav-link{position:relative;transition:color .25s}
+.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--p);transition:width .25s}
+.nav-link:hover::after{width:100%}
+.nav-link:hover{color:var(--p)}
+.sec-title::after{content:'';display:block;width:44px;height:2px;background:var(--p);margin-top:12px}
+
+/* Prize badge colors */
+.prize-대상  { background:#FFF8E1; color:#F57F17; border:1px solid #FFD54F; }
+.prize-우수상 { background:#F3E5F5; color:#6A1B9A; border:1px solid #CE93D8; }
+.prize-장려상 { background:#E8F5E9; color:#2E7D32; border:1px solid #A5D6A7; }
+.prize-특선  { background:#E3F2FD; color:#1565C0; border:1px solid #90CAF9; }
+.prize-입선  { background:#FAFAFA; color:#424242; border:1px solid #BDBDBD; }
+</style>
+</head>
+<body class="antialiased">
+<div id="nav-container"></div>
+
+<!-- Page Header -->
+<div class="pt-16 bg-hw-bg2 border-b border-hw-border">
+  <div class="max-w-7xl mx-auto px-5 py-16">
+    <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-3">Awards</p>
+    <h1 class="font-heading text-4xl lg:text-5xl font-bold text-hw-text mb-4">수상 경력</h1>
+    <p class="font-body text-hw-muted text-sm">다수의 공모전과 미술 대전에서 수상하며 작품성을 인정받았습니다.</p>
+  </div>
+</div>
+
+<!-- Summary Stats -->
+<section class="py-14 bg-white border-b border-hw-border">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6" id="stats-grid"></div>
+  </div>
+</section>
+
+<!-- Awards List -->
+<section class="py-20 bg-hw-bg">
+  <div class="max-w-4xl mx-auto px-5">
+    <div id="awards-by-year"></div>
+  </div>
+</section>
+
+<div id="footer-container"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    initNav('awards');
+    renderFooter();
+
+    // Stats
+    const prizeCount = {};
+    awards.forEach(a => { prizeCount[a.prize] = (prizeCount[a.prize] || 0) + 1; });
+    const statItems = [
+        { label: '총 수상 횟수', value: awards.length + '회' },
+        { label: '대상 / 최우수', value: (prizeCount['대상'] || 0) + '회' },
+        { label: '우수상', value: (prizeCount['우수상'] || 0) + '회' },
+        { label: '장려상 / 특선', value: ((prizeCount['장려상'] || 0) + (prizeCount['특선'] || 0)) + '회' },
+    ];
+    document.getElementById('stats-grid').innerHTML = statItems.map(s => `
+        <div class="text-center p-6 bg-hw-bg rounded-sm border border-hw-border">
+            <div class="font-heading text-4xl font-bold text-hw-red mb-2">${s.value}</div>
+            <div class="font-body text-xs text-hw-muted">${s.label}</div>
+        </div>`).join('');
+
+    // Group by year
+    const byYear = {};
+    awards.forEach(a => {
+        if (!byYear[a.year]) byYear[a.year] = [];
+        byYear[a.year].push(a);
+    });
+
+    const years = Object.keys(byYear).sort((a, b) => b - a);
+    document.getElementById('awards-by-year').innerHTML = years.map(year => `
+        <div class="mb-12">
+            <div class="flex items-center gap-4 mb-6">
+                <div class="font-heading text-5xl font-bold text-hw-red/15">${year}</div>
+                <div class="h-px flex-1 bg-hw-border"></div>
+            </div>
+            <div class="space-y-4">
+                ${byYear[year].map(a => `
+                    <div class="flex items-start gap-5 p-6 bg-white rounded-sm border border-hw-border hover:border-hw-red transition-colors">
+                        <span class="text-xs font-body px-3 py-1 rounded-full flex-shrink-0 mt-0.5 prize-${a.prize}">${a.prize}</span>
+                        <div class="flex-1">
+                            <div class="font-heading text-lg font-bold text-hw-text mb-0.5">${a.title}</div>
+                            <div class="font-body text-xs text-hw-muted">${a.org}</div>
+                            ${a.work ? `<div class="font-body text-xs text-hw-red/70 mt-1">작품: ${a.work}</div>` : ''}
+                        </div>
+                    </div>`).join('')}
+            </div>
+        </div>`).join('');
+});
+</script>
+</body>
+</html>

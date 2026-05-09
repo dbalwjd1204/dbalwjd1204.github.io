@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home | 민화 작가 유미정</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script>
+tailwind.config = {
+    theme: { extend: {
+        colors: { 'hw-red':'#8B1A1A','hw-bg':'#F8F4ED','hw-bg2':'#EFE9DB','hw-text':'#2C2826','hw-muted':'#7A6B5A','hw-border':'#D4C9B5','hw-black':'#1A1714' },
+        fontFamily: { heading:['Nanum Myeongjo','Georgia','serif'], body:['Nanum Gothic','Apple SD Gothic Neo','sans-serif'] }
+    }}
+}
+</script>
+<style>
+:root{--p:#8B1A1A;--bg:#F8F4ED;--bg2:#EFE9DB;--txt:#2C2826;--mut:#7A6B5A;--bdr:#D4C9B5;--shd:0 4px 20px rgba(44,40,38,.08)}
+body{font-family:'Nanum Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--txt)}
+h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
+.nav-link{position:relative;transition:color .25s}
+.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--p);transition:width .25s}
+.nav-link:hover::after{width:100%}
+.nav-link:hover{color:var(--p)}
+.card{box-shadow:var(--shd);transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(44,40,38,.16)}
+.sec-title::after{content:'';display:block;width:44px;height:2px;background:var(--p);margin-top:12px}
+.hero-pattern{background-image:radial-gradient(circle at 20% 50%,rgba(139,26,26,.04) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(201,150,10,.04) 0%,transparent 40%),url("data:image/svg+xml,%3Csvg width='52' height='52' viewBox='0 0 52 52' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M26 0 L52 26 L26 52 L0 26z' fill='%238B1A1A' fill-opacity='.025'/%3E%3C/svg%3E")}
+</style>
+</head>
+<body class="antialiased">
+<div id="nav-container"></div>
+
+<!-- Hero -->
+<section class="min-h-screen pt-16 hero-pattern flex items-center">
+  <div class="max-w-7xl mx-auto px-5 py-24 lg:py-32 w-full">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div>
+        <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-4">Korean Folk Painting Artist</p>
+        <h1 class="font-heading text-4xl lg:text-6xl font-bold text-hw-text leading-tight mb-6">
+          전통의 아름다움을<br>
+          <span class="text-hw-red relative">현대 공간에 담다
+            <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-hw-red to-transparent rounded"></span>
+          </span>
+        </h1>
+        <p class="font-body text-hw-muted text-lg leading-relaxed mb-8">
+          한국 전통 민화의 색채와 상징을 현대 공간에 어울리는 예술 작품으로 제안합니다.<br>
+          다수의 수상과 전시 경력을 바탕으로 공간의 품격을 높이는 작품을 선보입니다.
+        </p>
+        <div class="flex flex-wrap gap-3 mb-14">
+          <a href="portfolio.html" class="px-7 py-3 bg-hw-red text-white font-body text-sm rounded-sm hover:bg-red-900 transition-colors">작품 보기</a>
+          <a href="about.html"     class="px-7 py-3 border border-hw-border text-hw-muted font-body text-sm rounded-sm hover:border-hw-text hover:text-hw-text transition-colors">작가 소개</a>
+          <a href="contact.html"   class="px-7 py-3 border border-hw-border text-hw-muted font-body text-sm rounded-sm hover:border-hw-text hover:text-hw-text transition-colors">문의하기</a>
+        </div>
+        <div class="grid grid-cols-3 gap-6 pt-8 border-t border-hw-border">
+          <div><div id="stat-awards"      class="font-heading text-3xl font-bold text-hw-red"></div><div class="font-body text-xs text-hw-muted mt-1">수상 경력</div></div>
+          <div><div id="stat-exhibitions" class="font-heading text-3xl font-bold text-hw-red"></div><div class="font-body text-xs text-hw-muted mt-1">전시 참여</div></div>
+          <div><div id="stat-works"       class="font-heading text-3xl font-bold text-hw-red"></div><div class="font-body text-xs text-hw-muted mt-1">대표 작품</div></div>
+        </div>
+      </div>
+      <div class="card rounded-sm overflow-hidden border border-hw-border aspect-[3/4]">
+        <img src="artworks/유미정-일월오봉도_74cmX119cm.jpg" alt="일월오봉도" class="w-full h-full object-cover">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Featured Works -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-end justify-between mb-14">
+      <div>
+        <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-3">Portfolio</p>
+        <h2 class="font-heading text-3xl font-bold text-hw-text sec-title">대표 작품</h2>
+      </div>
+      <a href="portfolio.html" class="font-body text-sm text-hw-muted hover:text-hw-red transition-colors flex items-center gap-1">
+        전체 보기
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div id="featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7"></div>
+  </div>
+</section>
+
+<!-- About Summary -->
+<section class="py-24 bg-hw-bg">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+      <div class="card rounded-sm overflow-hidden border border-hw-border aspect-[3/4]">
+        <img src="author.jpg" alt="유미정 작가" class="w-full h-full object-cover">
+      </div>
+      <div>
+        <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-3">About Artist</p>
+        <h2 class="font-heading text-3xl font-bold text-hw-text sec-title mb-7">작가 소개</h2>
+        <blockquote class="border-l-2 border-hw-red pl-6 mb-7">
+          <p class="font-heading text-xl text-hw-text leading-relaxed italic">"전통 민화의 상징과 색채를 현대 공간에 새롭게 담아내는 민화 작가"</p>
+        </blockquote>
+        <p class="font-body text-hw-muted leading-relaxed mb-8 text-sm">
+          유미정 작가는 한국 전통 민화의 상징성과 색채미를 바탕으로 현대적 감각의 작품을 선보이고 있습니다. 모란, 책가도, 화조도, 문자도 등 전통 민화의 주요 소재를 재해석하며, 복과 길상, 조화와 풍요의 의미를 현대 공간 속에 자연스럽게 전달하고자 합니다. 다수의 공모전 수상과 전시 참여를 통해 작품성을 인정받았습니다.
+        </p>
+        <a href="about.html" class="inline-block px-7 py-3 bg-hw-red text-white font-body text-sm rounded-sm hover:bg-red-900 transition-colors">자세히 보기</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Awards Highlight -->
+<section class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-end justify-between mb-14">
+      <div>
+        <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-3">Awards</p>
+        <h2 class="font-heading text-3xl font-bold text-hw-text sec-title">주요 수상 경력</h2>
+      </div>
+      <a href="awards.html" class="font-body text-sm text-hw-muted hover:text-hw-red transition-colors flex items-center gap-1">
+        전체 보기 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div id="awards-highlight" class="grid lg:grid-cols-3 gap-5"></div>
+  </div>
+</section>
+
+<!-- Exhibitions Highlight -->
+<section class="py-24 bg-hw-bg">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-end justify-between mb-14">
+      <div>
+        <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-3">Exhibitions</p>
+        <h2 class="font-heading text-3xl font-bold text-hw-text sec-title">최근 전시 이력</h2>
+      </div>
+      <a href="exhibitions.html" class="font-body text-sm text-hw-muted hover:text-hw-red transition-colors flex items-center gap-1">
+        전체 보기 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div id="exhibitions-highlight" class="space-y-4"></div>
+  </div>
+</section>
+
+<!-- Contact CTA -->
+<section class="py-20 bg-hw-black">
+  <div class="max-w-3xl mx-auto px-5 text-center">
+    <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-4">Contact</p>
+    <h2 class="font-heading text-3xl lg:text-4xl font-bold text-white mb-6">작품 문의 및 전시 제안</h2>
+    <p class="font-body text-gray-400 text-sm leading-relaxed mb-10">작품 구매, 전시 제안, 강의 관련 문의를 환영합니다.<br>아래 버튼을 통해 연락해 주세요.</p>
+    <a href="contact.html" class="inline-block px-10 py-4 bg-hw-red text-white font-body text-sm rounded-sm hover:bg-red-900 transition-colors">문의하기</a>
+  </div>
+</section>
+
+<div id="footer-container"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    initNav('home');
+    renderFooter();
+
+    // Hero stats from SITE.stats
+    document.getElementById('stat-awards').textContent      = SITE.stats.awards;
+    document.getElementById('stat-exhibitions').textContent = SITE.stats.exhibitions;
+    document.getElementById('stat-works').textContent       = SITE.stats.works;
+
+    // Featured works (first 3)
+    document.getElementById('featured-grid').innerHTML = [...artworks].sort((a, b) => b.year - a.year).slice(0, 3).map(w => `
+        <a href="artwork.html?id=${w.id}" class="card block bg-white rounded-sm overflow-hidden border border-hw-border hover:border-hw-red transition-colors group">
+            <div class="aspect-[3/4] relative bg-hw-bg2 overflow-hidden">
+                ${w.image
+                    ? `<img src="${w.image}" alt="${w.title}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">`
+                    : `<div class="absolute inset-0 flex items-center justify-center"><div class="text-center p-6"><svg class="w-10 h-10 text-hw-red/25 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><p class="font-heading text-hw-muted text-sm">${w.title}</p></div></div>`
+                }
+            </div>
+            <div class="p-5">
+                <div class="font-heading text-lg font-bold text-hw-text mb-1">${w.title}</div>
+                <div class="font-body text-xs text-hw-muted mb-2">${w.year}${w.size ? ' · ' + w.size : ''} · ${w.material}</div>
+                <div class="font-body text-xs text-hw-muted line-clamp-2">${w.meaning}</div>
+            </div>
+        </a>`).join('');
+
+    // Awards highlight (top 3)
+    document.getElementById('awards-highlight').innerHTML = awards.slice(0, 3).map(a => `
+        <div class="bg-hw-bg rounded-sm border border-hw-border p-6 hover:border-hw-red transition-colors">
+            <div class="font-heading text-3xl font-bold text-hw-red/20 mb-3">${a.year}</div>
+            <div class="font-body text-xs text-hw-red tracking-wide mb-1">${a.prize}</div>
+            <div class="font-heading text-base font-bold text-hw-text mb-1">${a.title}</div>
+            <div class="font-body text-xs text-hw-muted">${a.org}</div>
+            ${a.work ? `<div class="font-body text-xs text-hw-red/70 mt-1">작품: ${a.work}</div>` : ''}
+        </div>`).join('');
+
+    // Exhibitions highlight (all solo + first group)
+    const recent = [...exhibitions.solo, ...exhibitions.group].slice(0, 4);
+    document.getElementById('exhibitions-highlight').innerHTML = recent.map(e => `
+        <div class="flex items-start gap-6 p-5 bg-white rounded-sm border border-hw-border hover:border-hw-red transition-colors">
+            <div class="font-heading text-2xl font-bold text-hw-red/25 flex-shrink-0">${e.year}</div>
+            <div class="flex-1">
+                <div class="font-heading text-base font-bold text-hw-text mb-0.5">${e.title}</div>
+                <div class="font-body text-sm text-hw-muted">${e.venue}</div>
+            </div>
+            <div class="font-body text-xs text-hw-red flex-shrink-0">${e.period}</div>
+        </div>`).join('');
+});
+</script>
+</body>
+</html>

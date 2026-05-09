@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | 민화 작가 유미정</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script>
+tailwind.config = {
+    theme: { extend: {
+        colors: { 'hw-red':'#8B1A1A','hw-bg':'#F8F4ED','hw-bg2':'#EFE9DB','hw-text':'#2C2826','hw-muted':'#7A6B5A','hw-border':'#D4C9B5','hw-black':'#1A1714' },
+        fontFamily: { heading:['Nanum Myeongjo','Georgia','serif'], body:['Nanum Gothic','Apple SD Gothic Neo','sans-serif'] }
+    }}
+}
+</script>
+<style>
+:root{--p:#8B1A1A;--bg:#F8F4ED;--bg2:#EFE9DB;--txt:#2C2826;--mut:#7A6B5A;--bdr:#D4C9B5;--shd:0 4px 20px rgba(44,40,38,.08)}
+body{font-family:'Nanum Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--txt)}
+h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
+.nav-link{position:relative;transition:color .25s}
+.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--p);transition:width .25s}
+.nav-link:hover::after{width:100%}
+.nav-link:hover{color:var(--p)}
+.sec-title::after{content:'';display:block;width:44px;height:2px;background:var(--p);margin-top:12px}
+input,select,textarea{transition:border-color .2s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--p)}
+</style>
+</head>
+<body class="antialiased">
+<div id="nav-container"></div>
+
+<!-- Page Header -->
+<div class="pt-16 bg-hw-bg2 border-b border-hw-border">
+  <div class="max-w-7xl mx-auto px-5 py-16">
+    <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-3">Contact</p>
+    <h1 class="font-heading text-4xl lg:text-5xl font-bold text-hw-text mb-4">문의하기</h1>
+    <p class="font-body text-hw-muted text-sm">작품 구매, 전시 제안, 강의 관련 문의를 환영합니다.</p>
+  </div>
+</div>
+
+<!-- Contact Main -->
+<section class="py-20 bg-hw-bg">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="grid lg:grid-cols-2 gap-16">
+
+      <!-- Left: Info -->
+      <div>
+        <h2 class="font-heading text-2xl font-bold text-hw-text sec-title mb-10">연락처 정보</h2>
+
+        <div class="space-y-6 mb-12">
+          <div class="flex items-start gap-5">
+            <div class="w-11 h-11 rounded-sm bg-white border border-hw-border flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-hw-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-body text-xs text-hw-muted mb-1">이메일</div>
+              <a id="contact-email" href="" class="font-body text-sm text-hw-text hover:text-hw-red transition-colors"></a>
+            </div>
+          </div>
+          <div class="flex items-start gap-5">
+            <div class="w-11 h-11 rounded-sm bg-white border border-hw-border flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-hw-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-body text-xs text-hw-muted mb-1">전화</div>
+              <a id="contact-phone" href="" class="font-body text-sm text-hw-text hover:text-hw-red transition-colors"></a>
+            </div>
+          </div>
+          <div class="flex items-start gap-5">
+            <div class="w-11 h-11 rounded-sm bg-white border border-hw-border flex items-center justify-center flex-shrink-0">
+              <svg class="w-5 h-5 text-hw-red" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-width="1.5"/>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"/>
+              </svg>
+            </div>
+            <div>
+              <div class="font-body text-xs text-hw-muted mb-1">인스타그램</div>
+              <a id="contact-instagram" href="" target="_blank" rel="noopener" class="font-body text-sm text-hw-text hover:text-hw-red transition-colors"></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inquiry Types -->
+        <h2 class="font-heading text-xl font-bold text-hw-text mb-6">문의 유형 안내</h2>
+        <div class="space-y-3">
+          <div class="flex items-start gap-4 p-4 bg-white rounded-sm border border-hw-border">
+            <div class="w-2 h-2 rounded-full bg-hw-red flex-shrink-0 mt-1.5"></div>
+            <div>
+              <div class="font-body text-sm font-bold text-hw-text mb-0.5">작품 구매</div>
+              <div class="font-body text-xs text-hw-muted">작품 구매를 원하시면 작품명, 예산, 연락처를 남겨 주세요.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 bg-white rounded-sm border border-hw-border">
+            <div class="w-2 h-2 rounded-full bg-hw-red flex-shrink-0 mt-1.5"></div>
+            <div>
+              <div class="font-body text-sm font-bold text-hw-text mb-0.5">전시 제안</div>
+              <div class="font-body text-xs text-hw-muted">갤러리, 문화재단, 기관 등의 전시 제안을 환영합니다.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 bg-white rounded-sm border border-hw-border">
+            <div class="w-2 h-2 rounded-full bg-hw-red flex-shrink-0 mt-1.5"></div>
+            <div>
+              <div class="font-body text-sm font-bold text-hw-text mb-0.5">강의 / 교육</div>
+              <div class="font-body text-xs text-hw-muted">민화 강의, 워크숍, 문화 교육 프로그램 관련 문의도 가능합니다.</div>
+            </div>
+          </div>
+          <div class="flex items-start gap-4 p-4 bg-white rounded-sm border border-hw-border">
+            <div class="w-2 h-2 rounded-full bg-hw-red flex-shrink-0 mt-1.5"></div>
+            <div>
+              <div class="font-body text-sm font-bold text-hw-text mb-0.5">기타 협업</div>
+              <div class="font-body text-xs text-hw-muted">인터뷰, 미디어 협력, 기타 협업 제안도 환영합니다.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div>
+        <h2 class="font-heading text-2xl font-bold text-hw-text sec-title mb-10">문의 양식</h2>
+        <form id="contact-form" class="space-y-5" onsubmit="submitForm(event)">
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block font-body text-xs text-hw-muted mb-1.5">이름 *</label>
+              <input type="text" name="이름" required placeholder="홍길동"
+                class="w-full px-4 py-3 border border-hw-border rounded-sm font-body text-sm text-hw-text bg-white">
+            </div>
+            <div>
+              <label class="block font-body text-xs text-hw-muted mb-1.5">연락처 *</label>
+              <input type="tel" name="연락처" required placeholder="010-XXXX-XXXX"
+                class="w-full px-4 py-3 border border-hw-border rounded-sm font-body text-sm text-hw-text bg-white">
+            </div>
+          </div>
+          <div>
+            <label class="block font-body text-xs text-hw-muted mb-1.5">이메일</label>
+            <input type="email" name="이메일" placeholder="email@example.com"
+              class="w-full px-4 py-3 border border-hw-border rounded-sm font-body text-sm text-hw-text bg-white">
+          </div>
+          <div>
+            <label class="block font-body text-xs text-hw-muted mb-1.5">소속 / 기관</label>
+            <input type="text" name="소속" placeholder="○○ 갤러리 / 개인"
+              class="w-full px-4 py-3 border border-hw-border rounded-sm font-body text-sm text-hw-text bg-white">
+          </div>
+          <div>
+            <label class="block font-body text-xs text-hw-muted mb-1.5">문의 유형 *</label>
+            <select name="문의유형" required class="w-full px-4 py-3 border border-hw-border rounded-sm font-body text-sm text-hw-text bg-white">
+              <option value="">선택해 주세요</option>
+              <option>작품 구매</option>
+              <option>전시 제안</option>
+              <option>강의 / 교육</option>
+              <option>인터뷰 / 미디어</option>
+              <option>기타 협업</option>
+              <option>기타</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-body text-xs text-hw-muted mb-1.5">문의 내용 *</label>
+            <textarea name="문의내용" required rows="6" placeholder="문의 내용을 상세히 작성해 주세요."
+              class="w-full px-4 py-3 border border-hw-border rounded-sm font-body text-sm text-hw-text bg-white resize-none"></textarea>
+          </div>
+          <div class="flex items-start gap-3">
+            <input type="checkbox" id="privacy" required class="mt-1 accent-hw-red">
+            <label for="privacy" class="font-body text-xs text-hw-muted leading-relaxed">
+              수집된 개인정보(이름, 연락처, 이메일)는 문의 답변 목적으로만 사용되며, 답변 완료 후 즉시 삭제됩니다. <span class="text-hw-red">*</span>
+            </label>
+          </div>
+          <button type="submit"
+            class="w-full py-4 bg-hw-red text-white font-body text-sm rounded-sm hover:bg-red-900 transition-colors">
+            문의 보내기
+          </button>
+        </form>
+
+        <!-- Success message (hidden) -->
+        <div id="success-msg" class="hidden mt-6 p-6 bg-green-50 border border-green-200 rounded-sm text-center">
+          <p class="font-heading text-lg text-green-800 mb-1">문의가 접수되었습니다.</p>
+          <p class="font-body text-sm text-green-600">빠른 시일 내에 연락드리겠습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-container"></div>
+
+<script>
+async function submitForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = '전송 중...';
+
+    try {
+        const res = await fetch('https://formspree.io/f/xeenrzab', {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' },
+        });
+        if (res.ok) {
+            form.classList.add('hidden');
+            document.getElementById('success-msg').classList.remove('hidden');
+        } else {
+            alert('전송에 실패했습니다. 잠시 후 다시 시도해 주세요.');
+            btn.disabled = false;
+            btn.textContent = '문의 보내기';
+        }
+    } catch {
+        alert('네트워크 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+        btn.disabled = false;
+        btn.textContent = '문의 보내기';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initNav('contact');
+    renderFooter();
+
+    // Contact info from SITE
+    const emailEl = document.getElementById('contact-email');
+    emailEl.textContent = SITE.email;
+    emailEl.href = 'mailto:' + SITE.email;
+    const phoneEl = document.getElementById('contact-phone');
+    phoneEl.textContent = SITE.phone;
+    phoneEl.href = 'tel:' + SITE.phone;
+    const igEl = document.getElementById('contact-instagram');
+    igEl.textContent = SITE.instagram;
+    igEl.href = 'https://instagram.com/' + SITE.instagram.replace('@', '');
+});
+</script>
+</body>
+</html>

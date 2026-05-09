@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>작품 상세 | 민화 작가 유미정</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="js/data.js"></script>
+<script src="js/nav.js"></script>
+<script>
+tailwind.config = {
+    theme: { extend: {
+        colors: { 'hw-red':'#8B1A1A','hw-bg':'#F8F4ED','hw-bg2':'#EFE9DB','hw-text':'#2C2826','hw-muted':'#7A6B5A','hw-border':'#D4C9B5','hw-black':'#1A1714' },
+        fontFamily: { heading:['Nanum Myeongjo','Georgia','serif'], body:['Nanum Gothic','Apple SD Gothic Neo','sans-serif'] }
+    }}
+}
+</script>
+<style>
+:root{--p:#8B1A1A;--bg:#F8F4ED;--bg2:#EFE9DB;--txt:#2C2826;--mut:#7A6B5A;--bdr:#D4C9B5;--shd:0 4px 20px rgba(44,40,38,.08)}
+body{font-family:'Nanum Gothic','Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--txt)}
+h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
+.nav-link{position:relative;transition:color .25s}
+.nav-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--p);transition:width .25s}
+.nav-link:hover::after{width:100%}
+.nav-link:hover{color:var(--p)}
+.card{box-shadow:var(--shd)}
+</style>
+</head>
+<body class="antialiased">
+<div id="nav-container"></div>
+
+<!-- Breadcrumb -->
+<div class="pt-16 bg-hw-bg2 border-b border-hw-border">
+  <div class="max-w-7xl mx-auto px-5 py-4 flex items-center gap-2 text-xs font-body text-hw-muted">
+    <a href="index.html" class="hover:text-hw-red transition-colors">Home</a>
+    <span>/</span>
+    <a href="portfolio.html" class="hover:text-hw-red transition-colors">Portfolio</a>
+    <span>/</span>
+    <span id="breadcrumb-title" class="text-hw-text"></span>
+  </div>
+</div>
+
+<!-- Content (rendered by JS) -->
+<div id="artwork-content" class="max-w-7xl mx-auto px-5 py-16">
+  <p class="font-body text-hw-muted text-sm text-center py-20">작품 정보를 불러오는 중...</p>
+</div>
+
+<!-- Related Works -->
+<section id="related-section" class="py-16 bg-white border-t border-hw-border">
+  <div class="max-w-7xl mx-auto px-5">
+    <h2 class="font-heading text-2xl font-bold text-hw-text mb-10">다른 작품 보기</h2>
+    <div id="related-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-5"></div>
+  </div>
+</section>
+
+<div id="footer-container"></div>
+
+<script>
+function adjustAspect(img) {
+    if (img.naturalWidth > img.naturalHeight) {
+        document.getElementById('artwork-img-container').style.aspectRatio = '4/3';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initNav('portfolio');
+    renderFooter();
+
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'));
+    const work = artworks.find(a => a.id === id);
+
+    if (!work) {
+        document.getElementById('artwork-content').innerHTML = `
+            <div class="text-center py-24">
+                <p class="font-body text-hw-muted mb-6">작품을 찾을 수 없습니다.</p>
+                <a href="portfolio.html" class="px-7 py-3 bg-hw-red text-white font-body text-sm rounded-sm hover:bg-red-900 transition-colors">Portfolio로 돌아가기</a>
+            </div>`;
+        return;
+    }
+
+    document.title = `${work.title} | 민화 작가 유미정`;
+    document.getElementById('breadcrumb-title').textContent = work.title;
+
+    const paragraphs = work.description.split('\n\n').map(p =>
+        `<p class="font-body text-hw-muted leading-relaxed text-sm mb-4">${p}</p>`
+    ).join('');
+
+    document.getElementById('artwork-content').innerHTML = `
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+            <!-- Image -->
+            <div id="artwork-img-container" class="card rounded-sm border border-hw-border relative overflow-hidden sticky top-24" style="aspect-ratio:3/4">
+                ${work.image
+                    ? `<img src="${work.image}" alt="${work.title}" class="absolute inset-0 w-full h-full object-cover" onload="adjustAspect(this)">`
+                    : `<div class="absolute inset-0 bg-hw-bg2 flex items-center justify-center"><div class="text-center p-10"><svg class="w-16 h-16 text-hw-red/25 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><p class="font-heading text-hw-muted text-lg">${work.title}</p><p class="font-body text-hw-muted text-xs mt-1 opacity-60">${work.subtitle}</p></div></div>`
+                }
+            </div>
+
+            <!-- Info -->
+            <div>
+                <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-3">${work.category}</p>
+                <h1 class="font-heading text-3xl lg:text-4xl font-bold text-hw-text mb-2">${work.title}</h1>
+                <p class="font-heading text-xl text-hw-muted mb-8">${work.subtitle}</p>
+
+                <!-- Specs Table -->
+                <div class="bg-white rounded-sm border border-hw-border overflow-hidden mb-8">
+                    <table class="w-full text-sm">
+                        <tbody>
+                            <tr class="border-b border-hw-border">
+                                <td class="font-body text-xs text-hw-muted bg-hw-bg px-5 py-3 w-28">제작연도</td>
+                                <td class="font-body text-hw-text px-5 py-3">${work.year}</td>
+                            </tr>
+                            <tr class="border-b border-hw-border">
+                                <td class="font-body text-xs text-hw-muted bg-hw-bg px-5 py-3">크기</td>
+                                <td class="font-body text-hw-text px-5 py-3">${work.size}</td>
+                            </tr>
+                            <tr class="border-b border-hw-border">
+                                <td class="font-body text-xs text-hw-muted bg-hw-bg px-5 py-3">재료</td>
+                                <td class="font-body text-hw-text px-5 py-3">${work.material}</td>
+                            </tr>
+                            <tr>
+                                <td class="font-body text-xs text-hw-muted bg-hw-bg px-5 py-3">액자</td>
+                                <td class="font-body text-hw-text px-5 py-3">${work.frame ? '있음' : '없음'}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Meaning -->
+                <div class="mb-8">
+                    <h2 class="font-heading text-xl font-bold text-hw-text mb-4">작품 의미</h2>
+                    <div class="border-l-2 border-hw-red pl-5 mb-6">
+                        <p class="font-body text-hw-text text-sm leading-relaxed italic">${work.meaning}</p>
+                    </div>
+                    <div>${paragraphs}</div>
+                </div>
+
+                <!-- Actions -->
+                <div class="flex flex-col sm:flex-row gap-3">
+                    <a href="contact.html" class="flex-1 py-3.5 bg-hw-red text-white font-body text-sm text-center rounded-sm hover:bg-red-900 transition-colors">작품 문의하기</a>
+                    <a href="portfolio.html" class="flex-1 py-3.5 border border-hw-border text-hw-muted font-body text-sm text-center rounded-sm hover:border-hw-text hover:text-hw-text transition-colors">Portfolio로 돌아가기</a>
+                </div>
+            </div>
+        </div>`;
+
+    // Related works (same category, exclude current)
+    const related = artworks.filter(a => a.category === work.category && a.id !== work.id).slice(0, 4);
+    if (related.length === 0) {
+        document.getElementById('related-section').style.display = 'none';
+    } else {
+        document.getElementById('related-grid').innerHTML = related.map(w => `
+            <a href="artwork.html?id=${w.id}" class="group block bg-hw-bg rounded-sm border border-hw-border hover:border-hw-red transition-colors overflow-hidden">
+                <div class="aspect-[3/4] relative bg-hw-bg2 overflow-hidden">
+                    ${w.image
+                        ? `<img src="${w.image}" alt="${w.title}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">`
+                        : `<div class="absolute inset-0 flex items-center justify-center"><div class="text-center p-4"><svg class="w-8 h-8 text-hw-red/20 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg><p class="font-heading text-hw-muted text-xs">${w.title}</p></div></div>`
+                    }
+                </div>
+                <div class="p-4">
+                    <div class="font-heading text-sm font-bold text-hw-text mb-0.5">${w.title}</div>
+                    <div class="font-body text-xs text-hw-muted">${w.year} · ${w.size}</div>
+                </div>
+            </a>`).join('');
+    }
+});
+</script>
+</body>
+</html>
