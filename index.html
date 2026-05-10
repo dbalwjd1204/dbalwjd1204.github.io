@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('stat-works').textContent       = SITE.stats.works;
 
     // Featured works (first 3)
-    document.getElementById('featured-grid').innerHTML = [...artworks].sort((a, b) => b.year - a.year).slice(0, 3).map(w => `
+    document.getElementById('featured-grid').innerHTML = artworks.filter(w => w.featured).map(w => `
         <a href="artwork.html?id=${w.id}" class="card block bg-white rounded-sm overflow-hidden border border-hw-border hover:border-hw-red transition-colors group">
             <div class="aspect-[3/4] relative bg-hw-bg2 overflow-hidden">
                 ${w.image
