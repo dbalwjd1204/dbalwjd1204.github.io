@@ -1,8 +1,8 @@
 'use strict';
 
 const SITE = {
-    name: '민화 작가 유미정',
-    subtitle: 'Korean Folk Painting Artist',
+    name: '민화·도예 작가 유미정',
+    subtitle: 'Minhwa & Ceramic Artist',
     tagline: '전통의 아름다움을 현대 공간에 담다',
     email: '1204alwjd@naver.com',
     phone: '031-461-9898',
@@ -152,6 +152,20 @@ const artworks = [
         image: 'artworks/유미정-일월오봉도_74cmX119cm.jpg',
     },
     {
+        id: 12,
+        title: '화조도',
+        subtitle: '꽃과 새의 아름다운 조화',
+        category: '전통',
+        year: 2024,
+        size: '',
+        material: '한지에 분채, 봉채',
+        frame: false,
+        meaning: '꽃과 새를 주제로 자연의 아름다움과 화목함을 담아낸 전통 민화입니다.',
+        description: '화조도(花鳥圖)는 한국 전통 민화에서 가장 사랑받는 장르 중 하나로, 꽃과 새를 함께 그려 자연의 조화로움과 행복을 표현합니다.\n\n꽃은 아름다움과 풍요를, 새는 자유와 기쁨을 상징하며, 두 요소가 어우러져 보는 이에게 밝고 화사한 기운을 전합니다.\n\n거실, 침실, 카페 등 밝고 따뜻한 분위기를 원하는 공간에 잘 어울리는 작품입니다.',
+        spaces: ['거실', '침실', '카페', '갤러리'],
+        image: 'artworks/유미정_화조도.jpg',
+    },
+    {
         id: 11,
         title: '여왕의 꽃',
         subtitle: '회심',
@@ -172,26 +186,35 @@ const awards = [
     { year: 2023, title: '제16회 대한민국민화 공모대전', prize: '특선', org: '한국민화협회', work: '여왕의 꽃(회심)' },
     { year: 2022, title: '제15회 대한민국민화 공모대전', prize: '특선', org: '한국민화협회', work: '시간 속의 향기' },
     { year: 2021, title: '제14회 대한민국민화 공모대전', prize: '특선', org: '한국민화협회', work: '시간 속에 시간-제국의 왈츠' },
+    { year: 2020, title: '제2회 대한민국 통일명인 미술대전', prize: '특선', org: '대한민국 통일명인 미술대전', work: '도예' },
+    { year: 2020, title: '남북코리아국제미술전', prize: '공로상', org: '남북코리아국제미술전', work: '도예부문' },
+    { year: 2020, title: '제37회 한국예술대제전', prize: '특선', org: '한국예술대제전', work: '민화' },
+    { year: 2020, title: '제38회 한국예술대제전', prize: '특선', org: '한국예술대제전', work: '민화' },
+    { year: 2020, title: '제18회 대한민국서예 문인화 대전 민화', prize: '특선', org: '월간 서예문인화 · 이화문화출판사 · 한국미술관', work: '' },
+    { year: 2019, title: '제17회 대한민국서예 문인화 대전 민화', prize: '특선', org: '월간 서예문인화 · 이화문화출판사 · 한국미술관', work: '' },
+    { year: 1995, title: '제14회 대한민국미술대전 (2부 구상계열)', prize: '입선', org: '한국미술협회', work: '한국화' },
+    { year: 1995, title: '제12회 경인미술대전', prize: '입선', org: '경인미술협회', work: '한국화' },
+    { year: 1995, title: '제13회 신미술대전', prize: '입선', org: '신미술대전', work: '한국화' },
 ];
 
-const exhibitions = {
-    solo: [
-        { year: 2024, title: '○○ 개인전',     venue: '○○갤러리, 서울',   period: '2024.03.15 – 03.25' },
-        { year: 2022, title: '첫 번째 개인전', venue: '△△아트센터, 경기', period: '2022.09.01 – 09.15' },
-    ],
-    group: [
-        { year: 2025, title: '봄 단체전',          venue: '○○문화센터, 서울', period: '2025.04.01 – 04.20' },
-        { year: 2024, title: '민화 작가 연합전',    venue: '○○갤러리, 서울',   period: '2024.11.01 – 11.15' },
-        { year: 2023, title: '전통과 현대의 만남',  venue: '○○미술관, 경기',   period: '2023.05.10 – 05.30' },
-        { year: 2022, title: '한국 민화의 오늘',    venue: '○○아트홀, 서울',   period: '2022.06.01 – 06.20' },
-    ],
-    invited: [
-        { year: 2024, title: '○○ 초대 기획전', venue: '○○갤러리, 부산', period: '2024.07.01 – 07.15' },
-        { year: 2023, title: '△△ 초대 전시',   venue: '△△문화관, 대구', period: '2023.10.05 – 10.20' },
-    ],
-    artfair: [
-        { year: 2025, title: '○○ 아트페어',   venue: 'COEX, 서울',       period: '2025.02.14 – 02.17' },
-        { year: 2024, title: '△△ 아트페어',   venue: '벡스코, 부산',     period: '2024.09.20 – 09.23' },
-        { year: 2023, title: '○○ 아트마켓',   venue: '○○문화광장, 서울', period: '2023.11.15 – 11.17' },
-    ],
-};
+const qualifications = [
+    { year: 1999, title: '중등학교 2급 미술정교사 교원 자격증', org: '교육청' },
+    { year: 2018, title: '민화 지도자 1급 자격증',              org: '한국민화협회' },
+    { year: 2018, title: '캘리그라피 2급 지도자 자격증',         org: '아시안캘리그라피' },
+    { year: 2020, title: '도자기 전문 지도자 자격증',            org: '명지대 사회교육원' },
+    { year: 2022, title: '민화지도자 자격증',                   org: '사)한국민화협회' },
+];
+
+const exhibitions = [
+    { year: 2024, title: '제17회 대한민국민화 공모대전 특선 전시', venue: '라메르갤러리' },
+    { year: 2024, title: '제17회 민화공모대전 추천 작가전',        venue: '라메르갤러리' },
+    { year: 2023, title: '화색도란전',                             venue: '경인미술관' },
+    { year: 2023, title: '제16회 대한민국민화 공모대전 특선 전시', venue: '라메르갤러리' },
+    { year: 2023, title: "제5회 대한민국 민화아트페어 '미모전'",   venue: '서울무역전시장' },
+    { year: 2022, title: '제15회 대한민국민화 공모대전 특선 전시', venue: '라메르갤러리' },
+    { year: 2021, title: '제14회 대한민국민화 공모대전 특선 전시', venue: '인사아트 프라자' },
+    { year: 1996, title: "서울도울아트갤러리 그룹전 '지우전'",    venue: '서울도울아트갤러리' },
+    { year: 1995, title: '제14회 대한민국미술대전 한국화',         venue: '국립현대미술관' },
+    { year: 1995, title: '제12회 경인미술대전 한국화',             venue: '부천시립미술관' },
+    { year: 1995, title: '제13회 신미술대전 한국화',               venue: '서울시립미술관' },
+];

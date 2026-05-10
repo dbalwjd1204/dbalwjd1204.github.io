@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>수상 경력 | 민화 작가 유미정</title>
+<title>수상 경력 | 민화·도예 작가 유미정</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="js/data.js"></script>
@@ -32,6 +32,7 @@ h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
 .prize-장려상 { background:#E8F5E9; color:#2E7D32; border:1px solid #A5D6A7; }
 .prize-특선  { background:#E3F2FD; color:#1565C0; border:1px solid #90CAF9; }
 .prize-입선  { background:#FAFAFA; color:#424242; border:1px solid #BDBDBD; }
+.prize-공로상 { background:#E8F4F8; color:#00695C; border:1px solid #80CBC4; }
 </style>
 </head>
 <body class="antialiased">
@@ -46,17 +47,18 @@ h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
   </div>
 </div>
 
-<!-- Summary Stats -->
-<section class="py-14 bg-white border-b border-hw-border">
-  <div class="max-w-7xl mx-auto px-5">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6" id="stats-grid"></div>
-  </div>
-</section>
-
 <!-- Awards List -->
 <section class="py-20 bg-hw-bg">
   <div class="max-w-4xl mx-auto px-5">
     <div id="awards-by-year"></div>
+  </div>
+</section>
+
+<!-- Qualifications -->
+<section class="py-20 bg-white border-t border-hw-border">
+  <div class="max-w-4xl mx-auto px-5">
+    <h2 class="font-heading text-2xl font-bold text-hw-text sec-title mb-10">자격사항</h2>
+    <div id="qualifications-list" class="space-y-4"></div>
   </div>
 </section>
 
@@ -67,19 +69,14 @@ document.addEventListener('DOMContentLoaded', () => {
     initNav('awards');
     renderFooter();
 
-    // Stats
-    const prizeCount = {};
-    awards.forEach(a => { prizeCount[a.prize] = (prizeCount[a.prize] || 0) + 1; });
-    const statItems = [
-        { label: '총 수상 횟수', value: awards.length + '회' },
-        { label: '대상 / 최우수', value: (prizeCount['대상'] || 0) + '회' },
-        { label: '우수상', value: (prizeCount['우수상'] || 0) + '회' },
-        { label: '장려상 / 특선', value: ((prizeCount['장려상'] || 0) + (prizeCount['특선'] || 0)) + '회' },
-    ];
-    document.getElementById('stats-grid').innerHTML = statItems.map(s => `
-        <div class="text-center p-6 bg-hw-bg rounded-sm border border-hw-border">
-            <div class="font-heading text-4xl font-bold text-hw-red mb-2">${s.value}</div>
-            <div class="font-body text-xs text-hw-muted">${s.label}</div>
+    // Qualifications
+    document.getElementById('qualifications-list').innerHTML = qualifications.map(q => `
+        <div class="flex items-start gap-6 p-6 bg-hw-bg rounded-sm border border-hw-border hover:border-hw-red transition-colors">
+            <div class="font-heading text-3xl font-bold text-hw-red/20 flex-shrink-0 w-16 text-right">${q.year}</div>
+            <div class="flex-1">
+                <div class="font-heading text-lg font-bold text-hw-text mb-0.5">${q.title}</div>
+                <div class="font-body text-xs text-hw-muted">${q.org}</div>
+            </div>
         </div>`).join('');
 
     // Group by year

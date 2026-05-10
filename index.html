@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home | 민화 작가 유미정</title>
+<title>Home | 민화·도예 작가 유미정</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="js/data.js"></script>
@@ -38,7 +38,7 @@ h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
   <div class="max-w-7xl mx-auto px-5 py-24 lg:py-32 w-full">
     <div class="grid lg:grid-cols-2 gap-16 items-center">
       <div>
-        <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-4">Korean Folk Painting Artist</p>
+        <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-4">Minhwa & Ceramic Artist</p>
         <h1 class="font-heading text-4xl lg:text-6xl font-bold text-hw-text leading-tight mb-6">
           전통의 아름다움을<br>
           <span class="text-hw-red relative">현대 공간에 담다
@@ -95,7 +95,7 @@ h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
         <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-3">About Artist</p>
         <h2 class="font-heading text-3xl font-bold text-hw-text sec-title mb-7">작가 소개</h2>
         <blockquote class="border-l-2 border-hw-red pl-6 mb-7">
-          <p class="font-heading text-xl text-hw-text leading-relaxed italic">"전통 민화의 상징과 색채를 현대 공간에 새롭게 담아내는 민화 작가"</p>
+          <p class="font-heading text-xl text-hw-text leading-relaxed italic">"전통 민화의 상징과 색채, 도예의 온기를 현대 공간에 새롭게 담아내는 작가"</p>
         </blockquote>
         <p class="font-body text-hw-muted leading-relaxed mb-8 text-sm">
           유미정 작가는 한국 전통 민화의 상징성과 색채미를 바탕으로 현대적 감각의 작품을 선보이고 있습니다. 모란, 책가도, 화조도, 문자도 등 전통 민화의 주요 소재를 재해석하며, 복과 길상, 조화와 풍요의 의미를 현대 공간 속에 자연스럽게 전달하고자 합니다. 다수의 공모전 수상과 전시 참여를 통해 작품성을 인정받았습니다.
@@ -187,15 +187,13 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>`).join('');
 
     // Exhibitions highlight (all solo + first group)
-    const recent = [...exhibitions.solo, ...exhibitions.group].slice(0, 4);
-    document.getElementById('exhibitions-highlight').innerHTML = recent.map(e => `
+    document.getElementById('exhibitions-highlight').innerHTML = exhibitions.slice(0, 4).map(e => `
         <div class="flex items-start gap-6 p-5 bg-white rounded-sm border border-hw-border hover:border-hw-red transition-colors">
             <div class="font-heading text-2xl font-bold text-hw-red/25 flex-shrink-0">${e.year}</div>
             <div class="flex-1">
                 <div class="font-heading text-base font-bold text-hw-text mb-0.5">${e.title}</div>
                 <div class="font-body text-sm text-hw-muted">${e.venue}</div>
             </div>
-            <div class="font-body text-xs text-hw-red flex-shrink-0">${e.period}</div>
         </div>`).join('');
 });
 </script>

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>전시 이력 | 민화 작가 유미정</title>
+<title>전시 이력 | 민화·도예 작가 유미정</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Gothic:wght@400;700;800&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="js/data.js"></script>
@@ -36,45 +36,13 @@ h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
   <div class="max-w-7xl mx-auto px-5 py-16">
     <p class="text-xs font-body text-hw-red tracking-widest uppercase mb-3">Exhibitions</p>
     <h1 class="font-heading text-4xl lg:text-5xl font-bold text-hw-text mb-4">전시 이력</h1>
-    <p class="font-body text-hw-muted text-sm">개인전, 단체전, 초대전, 아트페어 등 다양한 전시 활동을 이어가고 있습니다.</p>
+    <p class="font-body text-hw-muted text-sm">다양한 전시 활동을 이어가고 있습니다.</p>
   </div>
 </div>
 
-<!-- Summary -->
-<section class="py-10 bg-white border-b border-hw-border">
-  <div class="max-w-7xl mx-auto px-5">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-5">
-      <div class="text-center p-5 bg-hw-bg rounded-sm border border-hw-border">
-        <div class="font-heading text-4xl font-bold text-hw-red mb-1" id="cnt-solo">0</div>
-        <div class="font-body text-xs text-hw-muted">개인전</div>
-      </div>
-      <div class="text-center p-5 bg-hw-bg rounded-sm border border-hw-border">
-        <div class="font-heading text-4xl font-bold text-hw-red mb-1" id="cnt-group">0</div>
-        <div class="font-body text-xs text-hw-muted">단체전</div>
-      </div>
-      <div class="text-center p-5 bg-hw-bg rounded-sm border border-hw-border">
-        <div class="font-heading text-4xl font-bold text-hw-red mb-1" id="cnt-invited">0</div>
-        <div class="font-body text-xs text-hw-muted">초대전</div>
-      </div>
-      <div class="text-center p-5 bg-hw-bg rounded-sm border border-hw-border">
-        <div class="font-heading text-4xl font-bold text-hw-red mb-1" id="cnt-artfair">0</div>
-        <div class="font-body text-xs text-hw-muted">아트페어</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Tabs + List -->
+<!-- List -->
 <section class="py-16 bg-hw-bg">
   <div class="max-w-4xl mx-auto px-5">
-    <!-- Tab bar -->
-    <div class="flex gap-1 mb-10 border-b border-hw-border">
-      <button onclick="showTab('solo',this)"    class="exhibit-tab tab-active pb-4 px-4 text-sm font-body border-b-2">개인전</button>
-      <button onclick="showTab('group',this)"   class="exhibit-tab pb-4 px-4 text-sm font-body text-hw-muted border-b-2 border-transparent">단체전</button>
-      <button onclick="showTab('invited',this)" class="exhibit-tab pb-4 px-4 text-sm font-body text-hw-muted border-b-2 border-transparent">초대전</button>
-      <button onclick="showTab('artfair',this)" class="exhibit-tab pb-4 px-4 text-sm font-body text-hw-muted border-b-2 border-transparent">아트페어</button>
-    </div>
-
     <div id="list" class="space-y-4"></div>
   </div>
 </section>
@@ -82,41 +50,20 @@ h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
 <div id="footer-container"></div>
 
 <script>
-function showTab(tab, btn) {
-    document.querySelectorAll('.exhibit-tab').forEach(t => {
-        t.classList.remove('tab-active');
-        t.classList.add('text-hw-muted', 'border-transparent');
-    });
-    btn.classList.add('tab-active');
-    btn.classList.remove('text-hw-muted', 'border-transparent');
-    renderList(tab);
-}
-
-function renderList(tab) {
-    const list = exhibitions[tab] || [];
-    document.getElementById('list').innerHTML = list.length
-        ? list.map(e => `
-            <div class="flex items-start gap-6 p-6 bg-white rounded-sm border border-hw-border hover:border-hw-red transition-colors">
-                <div class="font-heading text-3xl font-bold text-hw-red/20 flex-shrink-0 w-16 text-right">${e.year}</div>
-                <div class="flex-1">
-                    <div class="font-heading text-xl font-bold text-hw-text mb-1">${e.title}</div>
-                    <div class="font-body text-sm text-hw-muted mb-1">${e.venue}</div>
-                    <div class="font-body text-xs text-hw-red">${e.period}</div>
-                </div>
-            </div>`).join('')
-        : '<p class="font-body text-hw-muted text-sm py-8 text-center">등록된 이력이 없습니다.</p>';
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     initNav('exhibitions');
     renderFooter();
 
-    document.getElementById('cnt-solo').textContent    = exhibitions.solo.length;
-    document.getElementById('cnt-group').textContent   = exhibitions.group.length;
-    document.getElementById('cnt-invited').textContent = exhibitions.invited.length;
-    document.getElementById('cnt-artfair').textContent = exhibitions.artfair.length;
-
-    renderList('solo');
+    document.getElementById('list').innerHTML = exhibitions.length
+        ? exhibitions.map(e => `
+            <div class="flex items-start gap-6 p-6 bg-white rounded-sm border border-hw-border hover:border-hw-red transition-colors">
+                <div class="font-heading text-3xl font-bold text-hw-red/20 flex-shrink-0 w-16 text-right">${e.year}</div>
+                <div class="flex-1">
+                    <div class="font-heading text-xl font-bold text-hw-text mb-1">${e.title}</div>
+                    <div class="font-body text-sm text-hw-muted">${e.venue}</div>
+                </div>
+            </div>`).join('')
+        : '<p class="font-body text-hw-muted text-sm py-8 text-center">등록된 이력이 없습니다.</p>';
 });
 </script>
 </body>

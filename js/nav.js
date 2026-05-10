@@ -21,7 +21,7 @@
 <nav class="fixed top-0 inset-x-0 z-50 bg-hw-bg/95 backdrop-blur-sm border-b border-hw-border">
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
     <a href="index.html" class="font-heading text-xl font-bold text-hw-text">
-      민화 작가 <span class="text-hw-red">유미정</span>
+      민화·도예 작가 <span class="text-hw-red">유미정</span>
     </a>
     <div class="hidden md:flex items-center gap-7">${desktop}</div>
     <button onclick="toggleMenu()" class="md:hidden p-2" aria-label="메뉴">
@@ -44,8 +44,8 @@
   <div class="max-w-7xl mx-auto px-5">
     <div class="grid lg:grid-cols-3 gap-8 mb-8">
       <div>
-        <div class="font-heading text-xl font-bold text-hw-text mb-3">민화 작가 유미정</div>
-        <p class="font-body text-xs text-hw-muted leading-relaxed">한국 전통 민화의 색채와 상징을 현대 공간에 담아내는 민화 작가입니다.</p>
+        <div class="font-heading text-xl font-bold text-hw-text mb-3">민화·도예 작가 유미정</div>
+        <p class="font-body text-xs text-hw-muted leading-relaxed">한국 전통 민화와 도예 작품으로 현대 공간에 전통의 아름다움을 담아내는 작가입니다.</p>
       </div>
       <div>
         <div class="font-body text-xs font-bold text-hw-muted mb-3 tracking-widest uppercase">Quick Links</div>
@@ -63,7 +63,7 @@
       </div>
     </div>
     <div class="border-t border-hw-border pt-6 text-center">
-      <p class="font-body text-xs text-hw-muted">© 2025 민화 작가 유미정. All rights reserved.</p>
+      <p class="font-body text-xs text-hw-muted">© 2025 민화·도예 작가 유미정. All rights reserved.</p>
     </div>
   </div>
 </footer>`;
