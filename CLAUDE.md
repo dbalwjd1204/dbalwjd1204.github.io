@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project overview
 
-Fully static Korean folk painting (민화) artist portfolio site. No build tools, no package manager, no tests — open HTML files directly in a browser. All dependencies load from CDN (Tailwind CSS v3, Google Fonts).
+Fully static Korean folk painting & ceramics (민화·도예) artist portfolio site. No build tools, no package manager, no tests — open HTML files directly in a browser. All dependencies load from CDN (Tailwind CSS v3, Google Fonts).
 
 ## Architecture
 
@@ -17,9 +17,10 @@ Fully static Korean folk painting (민화) artist portfolio site. No build tools
 | Variable | Shape |
 |---|---|
 | `SITE` | `{ name, subtitle, tagline, email, phone, instagram, stats }` |
-| `artworks` | Array of 9 artwork objects `{ id, title, subtitle, category, year, size, material, frame, meaning, description, spaces }` |
-| `awards` | Array of objects `{ year, title, prize, org }` |
-| `exhibitions` | `{ solo, group, invited, artfair }` — each an array of `{ year, title, venue, period }` |
+| `artworks` | Array of 18 artwork objects `{ id, title, subtitle, category, year, size, material, frame, meaning, description, spaces, image }` |
+| `awards` | Array of objects `{ year, title, prize, org, work }` |
+| `qualifications` | Array of objects `{ year, title, org }` |
+| `exhibitions` | Flat array of `{ year, title, venue }` — sorted newest first |
 
 ### Navigation & footer injection (`js/nav.js`)
 IIFE. Exposes `window.initNav(pageId)` and `window.renderFooter()`. Both nav links and footer Quick Links are generated from the single `LINKS` array — adding or removing a page requires editing only that array.
@@ -42,28 +43,29 @@ document.addEventListener('DOMContentLoaded', () => {
 **1. Add an object to `artworks` in `js/data.js`:**
 ```js
 {
-    id: 10,                          // unique integer, increment from last
+    id: 19,                          // unique integer, increment from last (currently 18)
     title: '제목',
     subtitle: '부제목',
-    category: '전통',                // must match a filter value: '전통' | '창작'
+    category: '전통',                // must match a filter value: '전통' | '창작' | '도예'
     year: 2025,
-    size: '60×90cm',
+    size: '60×90cm',                 // 크기 미정이면 빈 문자열 ''
     material: '한지에 분채',
     frame: true,                     // boolean
     meaning: '한 줄 상징 설명',
     description: '단락1\n\n단락2\n\n단락3',  // \n\n으로 단락 구분
     spaces: ['갤러리', '카페'],      // 추천 공간 태그 배열
+    image: 'artworks/파일명.jpg',    // 이미지 없으면 SVG 플레이스홀더 자동 표시
 }
 ```
 
 **2. Link to it from `portfolio.html` or anywhere else:**
 ```html
-<a href="artwork.html?id=10">...</a>
+<a href="artwork.html?id=13">...</a>
 ```
 
 That's all. `artwork.html` dynamically builds the full detail page from the `artworks` data. The related-works section auto-populates with up to 4 works in the same `category`.
 
-> **새 카테고리를 추가하는 경우** `portfolio.html`의 필터 버튼에도 추가해야 합니다 (line 51–53).
+> **새 카테고리를 추가하는 경우** `portfolio.html`의 필터 버튼에도 추가해야 합니다 (line 51–54).
 
 ### Styling
 - Tailwind CSS v3 via CDN with custom config block in every HTML `<head>`
@@ -73,9 +75,7 @@ That's all. `artwork.html` dynamically builds the full detail page from the `art
 
 ## Content editing
 
-All content lives in `js/data.js`. Edit that file only — do not hardcode content in HTML pages (except `about.html` which has hardcoded bio text and career timeline).
-
-The artist name `○○○` is a placeholder throughout the codebase; replace it globally when the real name is known.
+All content lives in `js/data.js`. Edit that file only — do not hardcode content in HTML pages (except `about.html` which has hardcoded bio text, career timeline, and qualifications rendered from `qualifications` array).
 
 ## Page–pageId mapping
 

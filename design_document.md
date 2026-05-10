@@ -2,7 +2,7 @@
 
 > 작성일: 2026-05-08  
 > 최종 수정: 2026-05-10  
-> 버전: 1.2.0
+> 버전: 1.3.0
 
 ---
 
@@ -43,7 +43,7 @@ index.html          Home
 ├── about.html      작가 소개
 ├── portfolio.html  Portfolio (갤러리)
 │   └── artwork.html?id={n}  작품 상세
-├── awards.html     수상 경력
+├── awards.html     수상 및 자격
 ├── exhibitions.html 전시 이력
 └── contact.html    Contact
 ```
@@ -86,7 +86,7 @@ C:\HD\
 │   ├── data.js             # 공유 데이터 (작품, 수상, 전시)
 │   └── nav.js              # 공유 네비게이션 & 푸터 렌더러
 │
-├── artworks/               # 작품 이미지 파일 (총 10개)
+├── artworks/               # 작품 이미지 파일 (총 18개)
 │   ├── 유미정_맹호도.jpg
 │   ├── 유미정 130x75cm -3119-보자기-정담.jpg
 │   ├── 유미정_감로도(37cmX27cm).jpg
@@ -97,7 +97,14 @@ C:\HD\
 │   ├── 유미정-문자도-37cmX48cm_2.jpg
 │   ├── 유미정-연화도_142cmX53cm.jpg
 │   ├── 유미정-일월오봉도_74cmX119cm.jpg
-│   └── 유미정_여왕의꽃.jpg
+│   ├── 유미정_여왕의꽃.jpg
+│   ├── 유미정_화조도.jpg
+│   ├── 유미정_화접도.jpg
+│   ├── 유미정_책가도.jpg
+│   ├── 유미정_책거리_창작.jpg
+│   ├── 유미정_다기세트_도예.jpg
+│   ├── 목연등_도예.jpg
+│   └── 장군호_도예.jpg
 │
 ├── author.jpg              # 작가 프로필 사진 (about.html, index.html About 섹션)
 ├── design_document.md      # 본 설계 문서
@@ -108,7 +115,7 @@ C:\HD\
 
 ```
 각 HTML 페이지
-    └── js/data.js    (SITE, artworks, awards, exhibitions 변수 노출)
+    └── js/data.js    (SITE, artworks, awards, qualifications, exhibitions 변수 노출)
     └── js/nav.js     (data.js 이후 로드, SITE 변수 사용)
          ├── initNav(pageId)    → #nav-container 에 네비게이션 주입
          └── renderFooter()    → #footer-container 에 푸터 주입
@@ -131,9 +138,10 @@ C:\HD\
 | 변수명 | 타입 | 설명 |
 |---|---|---|
 | `SITE` | Object | 작가명, 이메일, 전화번호 등 기본 정보 |
-| `artworks` | Array\<Artwork\> | 전체 작품 목록 |
+| `artworks` | Array\<Artwork\> | 전체 작품 목록 (현재 18점) |
 | `awards` | Array\<Award\> | 수상 경력 목록 |
-| `exhibitions` | Object | 전시 이력 (solo/group/invited/artfair) |
+| `qualifications` | Array\<Qualification\> | 자격사항 목록 |
+| `exhibitions` | Array\<Exhibition\> | 전시 이력 (flat 배열, 최신순) |
 
 ---
 
@@ -215,7 +223,7 @@ C:\HD\
   id:          number,   // 고유 ID (artwork.html?id=N 에 사용)
   title:       string,   // 작품명
   subtitle:    string,   // 부제목
-  category:    string,   // "전통" | "창작"
+  category:    string,   // "전통" | "창작" | "도예"
   year:        number,   // 제작연도
   size:        string,   // "60×90cm" (미정인 경우 빈 문자열 '')
   material:    string,   // "한지에 분채, 봉채"
@@ -227,21 +235,28 @@ C:\HD\
 }
 ```
 
-#### 현재 등록 작품 목록 (총 10점)
+#### 현재 등록 작품 목록 (총 18점)
 
 | id | 제목 | 카테고리 | 크기 | 이미지 파일 |
 |---|---|---|---|---|
 | 1 | 맹호도 | 전통 | — | 유미정_맹호도.jpg |
-| 2 | 정담 | 현대 | 130×75cm | 유미정 130x75cm -3119-보자기-정담.jpg |
+| 2 | 정담 | 창작 | 130×75cm | 유미정 130x75cm -3119-보자기-정담.jpg |
 | 3 | 감로도 | 전통 | 37×27cm | 유미정_감로도(37cmX27cm).jpg |
-| 4 | 선물 | 현대 | — | 유미정_선물.jpg |
-| 5 | 운수좋은날 | 현대 | — | 유미정_운수좋은날.jpg |
-| 6 | 제국의왈츠 | 현대 | — | 유미정_제국의왈츠.jpg |
+| 4 | 선물 | 창작 | — | 유미정_선물.jpg |
+| 5 | 운수좋은날 | 창작 | — | 유미정_운수좋은날.jpg |
+| 6 | 제국의왈츠 | 창작 | — | 유미정_제국의왈츠.jpg |
 | 7 | 문자도 I | 전통 | 37×48cm | 유미정-문자도-37cmX48cm_1.jpg |
 | 8 | 문자도 II | 전통 | 37×48cm | 유미정-문자도-37cmX48cm_2.jpg |
 | 9 | 연화도 | 전통 | 142×53cm | 유미정-연화도_142cmX53cm.jpg |
 | 10 | 일월오봉도 | 전통 | 74×119cm | 유미정-일월오봉도_74cmX119cm.jpg |
-| 11 | 여왕의 꽃 | 전통 | — | 유미정_여왕의꽃.jpg |
+| 11 | 여왕의 꽃 | 창작 | — | 유미정_여왕의꽃.jpg |
+| 12 | 화조도 | 전통 | — | 유미정_화조도.jpg |
+| 13 | 화접도 | 전통 | — | 유미정_화접도.jpg |
+| 14 | 책가도 | 전통 | — | 유미정_책가도.jpg |
+| 15 | 책거리 | 창작 | — | 유미정_책거리_창작.jpg |
+| 16 | 다기세트 | 도예 | — | 유미정_다기세트_도예.jpg |
+| 17 | 목연등 | 도예 | — | 목연등_도예.jpg |
+| 18 | 장군호 | 도예 | — | 장군호_도예.jpg |
 
 ---
 
@@ -251,30 +266,34 @@ C:\HD\
 {
   year:  number,  // 수상 연도
   title: string,  // 공모전/대전명
-  prize: string,  // "대상" | "우수상" | "장려상" | "특선" | "입선"
+  prize: string,  // "대상" | "우수상" | "장려상" | "특선" | "입선" | "공로상"
   org:   string,  // 주관 기관
-  work:  string,  // 출품 작품명 (선택, 있으면 카드에 표시)
+  work:  string,  // 출품 작품명 또는 부문 (선택, 있으면 카드에 표시)
 }
 ```
 
 ---
 
-### 5.4 Exhibitions
+### 5.4 Qualification
 
 ```js
 {
-  solo:    ExhibitionItem[],   // 개인전
-  group:   ExhibitionItem[],   // 단체전
-  invited: ExhibitionItem[],   // 초대전
-  artfair: ExhibitionItem[],   // 아트페어
+  year:  number,  // 취득 연도
+  title: string,  // 자격증명
+  org:   string,  // 발급 기관
 }
+```
 
-// ExhibitionItem
+---
+
+### 5.5 Exhibition
+
+```js
+// exhibitions — 카테고리 없는 flat 배열, 최신 연도 우선 정렬
 {
-  year:   number,
-  title:  string,
-  venue:  string,   // "○○갤러리, 서울"
-  period: string,   // "2024.03.15 – 03.25"
+  year:  number,
+  title: string,
+  venue: string,  // "라메르갤러리"
 }
 ```
 
@@ -290,7 +309,7 @@ C:\HD\
 | Featured Works | 대표 작품 카드 3개 (최신순) | `[...artworks].sort((a,b)=>b.year-a.year).slice(0,3)` |
 | About Summary | 작가 소개 요약 + 사진 플레이스홀더 | 하드코딩 |
 | Awards Highlight | 수상 카드 3개 | `awards.slice(0, 3)` |
-| Exhibitions Highlight | 최근 전시 4개 | `solo + group` 합산 앞 4개 |
+| Exhibitions Highlight | 최근 전시 4개 | `exhibitions.slice(0, 4)` |
 | Contact CTA | 어두운 배경 배너 + 문의 버튼 | — |
 
 **카드 클릭 이동**: `artwork.html?id={w.id}`
@@ -301,9 +320,10 @@ C:\HD\
 
 | 섹션 | 구성 요소 |
 |---|---|
-| 프로필 | 사진(좌) + 바이오 텍스트(우), 정보 그리드 6칸 |
-| 작가 노트 | 흰색 박스 내 3단락 텍스트 |
-| 주요 이력 | 타임라인 (왼쪽 세로선 + 연도 + 내용) |
+| 프로필 | 사진(좌) + 바이오 텍스트(우), 정보 그리드 6칸 (활동 분야·주요 기법·소속·학력·수상·전시) |
+| 작가 노트 | 흰색 박스 내 4단락 텍스트 (민화 + 도예 언급) |
+| 자격사항 | `qualifications` 배열 역순 렌더링 (`#qual-list`) |
+| 주요 이력 | 타임라인 (왼쪽 세로선 + 연도 + 내용, 2025→1999 역순) |
 | 철학 배너 | 어두운 배경 인용문 + Portfolio 링크 |
 
 ---
@@ -312,7 +332,7 @@ C:\HD\
 
 | 요소 | 설명 |
 |---|---|
-| 카테고리 필터 | 전체 / 전통민화 / 창작민화 |
+| 카테고리 필터 | 전체 / 전통민화 / 창작민화 / 도예 |
 | 작품 수 표시 | 필터 적용 후 `총 N점` 텍스트 업데이트 |
 | 그리드 | 3열 (lg) / 2열 (sm) / 1열 (기본) |
 | 카드 클릭 | `artwork.html?id={id}` 이동 |
@@ -360,13 +380,13 @@ DOMContentLoaded
 
 ---
 
-### 6.5 `awards.html` — 수상 경력
+### 6.5 `awards.html` — 수상 및 자격
 
 | 요소 | 설명 |
 |---|---|
-| 요약 통계 | 총 수상 / 대상 / 우수상 / 장려상+특선 카드 4개 |
-| 연도별 그룹 | `year` 기준 내림차순 정렬 후 섹션 분리 |
-| 상장 뱃지 색상 | 대상=황색, 우수상=보라, 장려상=녹색, 특선=파랑, 입선=회색 |
+| 수상 이력 | `year` 기준 내림차순 그룹화 후 섹션 분리 |
+| 상장 뱃지 색상 | 대상=황색, 우수상=보라, 장려상=녹색, 특선=파랑, 입선=회색, 공로상=청록 |
+| 자격사항 | `qualifications` 배열 역순 렌더링 (`#qualifications-list`) |
 
 #### 연도별 그룹화 로직
 
@@ -385,10 +405,8 @@ Object.keys(byYear).sort((a, b) => b - a); // 최신 연도 우선
 
 | 요소 | 설명 |
 |---|---|
-| 요약 통계 | 개인전 / 단체전 / 초대전 / 아트페어 횟수 |
-| 탭 메뉴 | solo / group / invited / artfair 전환 |
-| 탭 전환 | `showTab(tab, btn)` — 탭 스타일 업데이트 + 목록 재렌더링 |
-| 기본 탭 | 개인전 (solo) |
+| 단일 목록 | 카테고리·탭 없이 `exhibitions` 배열 전체를 순서대로 렌더링 |
+| 표시 정보 | 연도(대형 반투명) / 전시명 / 장소 |
 
 ---
 
@@ -632,6 +650,7 @@ git push -u origin main
 | 버전 | 날짜 | 내용 |
 |---|---|---|
 | 1.0.0 | 2026-05-08 | 최초 작성 |
+| 1.3.0 | 2026-05-10 | 수상 이력 12건으로 확장 (공로상 뱃지 추가) · 전시 이력 flat 배열 구조로 단순화 (카테고리·탭·통계 제거) · 자격사항(`qualifications`) 데이터 모델 및 렌더링 추가 (awards.html·about.html) · 화조도(id:12) 작품 추가 · 내비게이션 "수상 경력" → "수상 및 자격" · about.html 학력 상세화·주요 이력 분리·도예 관련 내용 반영 · 통계 수치 갱신 (전시 20+, 작품 50+) · artwork.html size 빈값 처리 개선 |
 | 1.2.0 | 2026-05-10 | 사이트 범위 민화·도예로 확장 — 전체 `<title>` 및 메타 정보, nav·footer, SITE 객체, about.html 바이오·인용문·활동 분야·주요 기법·작가 노트·철학 문구 도예 포함으로 갱신 · portfolio.html 도예 필터 버튼 추가 · index.html About 섹션 인용문 도예 포함으로 수정 |
 | 1.1.0 | 2026-05-09 | 작품 5점 추가 (문자도 I·II, 연화도, 일월오봉도, 여왕의 꽃) · Artwork 모델 `image` 필드 추가 · 카테고리 값 `'전통'\|'창작'`으로 확정 · Featured Works 최신순 정렬 적용 · 연락처 실제 정보 반영 (이메일·전화·인스타그램) · 연락처 링크(`mailto:` / `tel:` / Instagram) 적용 · 히어로 이미지 일월오봉도 적용 · 프로필 사진 author.jpg 적용 · 맹호도 이미지 파일명 오타 수정 · 학력 정보 반영 (수원대학교 동양학과·교육대학원 졸업) · 수상 내역 실제 정보 반영 (제14~17회 대한민국민화 공모대전 특선) · Award 모델 `work` 필드 추가 · `SITE.stats.awards` 10+로 수정 · about.html 주요 이력 실제 수상 내역과 동기화 · 작품 상세 추천 공간 섹션 제거 · 가로 작품 자동 4:3 비율 적용 · contact.html Formspree 연동 (실메일 수신) · 기술 스택에서 미사용 marked.js 제거 |
 
