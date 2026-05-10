@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </tr>
                             <tr class="border-b border-hw-border">
                                 <td class="font-body text-xs text-hw-muted bg-hw-bg px-5 py-3">크기</td>
-                                <td class="font-body text-hw-text px-5 py-3">${work.size}</td>
+                                <td class="font-body text-hw-text px-5 py-3">${work.size || '정보 없음'}</td>
                             </tr>
                             <tr class="border-b border-hw-border">
                                 <td class="font-body text-xs text-hw-muted bg-hw-bg px-5 py-3">재료</td>
@@ -159,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
                 <div class="p-4">
                     <div class="font-heading text-sm font-bold text-hw-text mb-0.5">${w.title}</div>
-                    <div class="font-body text-xs text-hw-muted">${w.year} · ${w.size}</div>
+                    <div class="font-body text-xs text-hw-muted">${w.year}${w.size ? ' · ' + w.size : ''}</div>
                 </div>
             </a>`).join('');
     }
