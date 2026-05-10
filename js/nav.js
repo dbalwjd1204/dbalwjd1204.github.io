@@ -4,7 +4,7 @@
         { href: 'index.html',       id: 'home',        label: 'Home' },
         { href: 'about.html',       id: 'about',       label: '작가 소개' },
         { href: 'portfolio.html',   id: 'portfolio',   label: 'Portfolio' },
-        { href: 'awards.html',      id: 'awards',      label: '수상 경력' },
+        { href: 'awards.html',      id: 'awards',      label: '수상 및 자격' },
         { href: 'exhibitions.html', id: 'exhibitions', label: '전시 이력' },
         { href: 'contact.html',     id: 'contact',     label: 'Contact' },
     ];

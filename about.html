@@ -107,6 +107,12 @@ h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
           </div>
         </div>
 
+        <!-- Qualifications -->
+        <div class="mb-12">
+          <h2 class="font-heading text-2xl font-bold text-hw-text sec-title mb-7">자격사항</h2>
+          <div id="qual-list" class="space-y-3"></div>
+        </div>
+
         <!-- Career Timeline -->
         <div>
           <h2 class="font-heading text-2xl font-bold text-hw-text sec-title mb-7">주요 이력</h2>
@@ -160,6 +166,15 @@ h1,h2,h3,h4{font-family:'Nanum Myeongjo',Georgia,serif}
 document.addEventListener('DOMContentLoaded', () => {
     initNav('about');
     renderFooter();
+
+    document.getElementById('qual-list').innerHTML = [...qualifications].sort((a,b) => b.year - a.year).map(q => `
+        <div class="flex items-start gap-5 p-4 bg-white rounded-sm border border-hw-border hover:border-hw-red transition-colors">
+            <div class="font-heading text-xl font-bold text-hw-red/25 flex-shrink-0 w-12 text-right">${q.year}</div>
+            <div class="flex-1">
+                <div class="font-body text-sm font-bold text-hw-text">${q.title}</div>
+                <div class="font-body text-xs text-hw-muted mt-0.5">${q.org}</div>
+            </div>
+        </div>`).join('');
 });
 </script>
 </body>

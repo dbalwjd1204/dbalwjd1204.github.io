@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFooter();
 
     // Qualifications
-    document.getElementById('qualifications-list').innerHTML = qualifications.map(q => `
+    document.getElementById('qualifications-list').innerHTML = [...qualifications].sort((a,b) => b.year - a.year).map(q => `
         <div class="flex items-start gap-6 p-6 bg-hw-bg rounded-sm border border-hw-border hover:border-hw-red transition-colors">
             <div class="font-heading text-3xl font-bold text-hw-red/20 flex-shrink-0 w-16 text-right">${q.year}</div>
             <div class="flex-1">
