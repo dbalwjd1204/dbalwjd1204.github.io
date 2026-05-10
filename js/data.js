@@ -155,9 +155,9 @@ const artworks = [
     },
     {
         id: 12,
-        title: '화조도',
+        title: '화조도(창작)',
         subtitle: '꽃과 새의 아름다운 조화',
-        category: '전통',
+        category: '창작',
         year: 2021,
         size: '',
         material: '한지에 분채, 봉채',
