@@ -7,7 +7,7 @@ const SITE = {
     email: '1204alwjd@naver.com',
     phone: '031-461-9898',
     instagram: '@yumijeong6093',
-    stats: { awards: '10+', exhibitions: '50+', works: '100+' },
+    stats: { awards: '10+', exhibitions: '20+', works: '50+' },
 };
 
 const artworks = [
