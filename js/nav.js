@@ -63,7 +63,7 @@
       </div>
     </div>
     <div class="border-t border-hw-border pt-6 text-center">
-      <p class="font-body text-xs text-hw-muted">© 2025 민화·도예 작가 유미정. All rights reserved.</p>
+      <p class="font-body text-xs text-hw-muted">© 2026 민화·도예 작가 유미정. All rights reserved.</p>
     </div>
   </div>
 </footer>`;
@@ -71,4 +71,20 @@
 
     window.toggleMenu = function () { document.getElementById('mobile-menu').classList.toggle('hidden'); };
     window.closeMenu  = function () { document.getElementById('mobile-menu').classList.add('hidden'); };
+
+    // 이미지 보호
+    (function protectImages() {
+        const style = document.createElement('style');
+        style.textContent = 'img{-webkit-user-drag:none;user-drag:none;user-select:none;-webkit-user-select:none;pointer-events:none;}';
+        document.head.appendChild(style);
+
+        document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+        document.addEventListener('dragstart',   e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('img').forEach(img => {
+                img.setAttribute('draggable', 'false');
+                img.addEventListener('mousedown', e => { if (e.button === 2) e.preventDefault(); });
+            });
+        });
+    })();
 })();
